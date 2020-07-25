@@ -2,17 +2,61 @@
 
 class UsersController < ApplicationController
 
-# index action => 
+    get '/users/:id' do
+        if !logged_in?
+            redirect '/index'
+        end
 
-# new action => gets form to create a new user
+        @user = User.find(params[:id])
+        if !@user.nil? && @user == current_user
+            erb :'users/show'
+        else
+            redirect '/index'
+        end
+    end
 
-# create action => submits form info and runs .create method on User
+    get '/signup' do
+        if !session[:user_id]
+            erb :'user/new'
+        end
+    end
 
-# show action => gets users/:id page
+    post '/signup' do
+        if !params["username"].empty? && !params["password"].empty?
+            @user = User.create(username: params[:username], password: params[:password])
+            session[:user_id] = @user.id
+            redirect '/index'
+        else
+            raise "I'm sorry but those are incomplete values for an account."
+        end
+    end
 
-# edit action => gets form to make changes to user info
+    get '/login' do
+        @error_message = params[:error]
+        if !session[:user_id]
+            erb :'user/login'
+        else
+            redirect '/index'
+        end
+    end
 
-# update action => submits form info to user page
+    post '/login' do
+        @user = User.find_by(username: params[:username])
+        if @user && user.authenticate(params[:pasword])
+            session[:user_id] = @user.id
+            redirect '/index'
+        else
+            redirect to '/signup'
+        end
+    end
 
-# delete action => deletes a user
+    get '/logout' do
+        if session[:user_id] != nil
+            session.destroy
+            redirect to '/login'
+        else
+            redirect to '/'
+        end
+    end
+    
 end
