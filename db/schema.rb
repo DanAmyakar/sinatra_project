@@ -11,24 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200724195710) do
-
-  create_table "connexes", force: :cascade do |t|
-    t.string  "company"
-    t.string  "contents"
-    t.integer "ship_id"
-  end
-
-  create_table "ships", force: :cascade do |t|
-    t.string  "name"
-    t.integer "connex_slots"
-    t.integer "user_id"
-    t.integer "connex_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password_digest"
-  end
+ActiveRecord::Schema.define(version: 0) do
 
 end
