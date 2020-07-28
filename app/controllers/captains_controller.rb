@@ -3,7 +3,9 @@
 class CaptainsController < ApplicationController
 
     get '/captains/:id' do
-        redirect to "/" if !signed_in?
+        if !signed_in?
+            redirect to "/"
+        end
         
         @captain = Captain.find(params[:id])
         if !@captain.nil? && @captain == current_captain

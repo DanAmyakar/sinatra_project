@@ -12,6 +12,8 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'dotenv'
+gem 'listen'
+gem 'rerun'
 
 group :test do
   gem 'rspec'
