@@ -1,6 +1,6 @@
 <h1>Welcome Captain <%= @captain.name%></h1>
 <br />
-<h3>Your ships...</h3>
+<h3>These are the ships you've registered.</h3>
 <ul>
 <% @captain.ships.each do |ship| %>
     <li><a href="ships/#{ship.id}"><%= ship.name %></a></li>
