@@ -1,9 +1,13 @@
-<h1>Welcome Captain <%= @captain.name%></h1>
+<h1>Welcome Captain <%= @captain.captain_name%></h1>
 <br />
 <h3>These are the ships you've registered.</h3>
 <ul>
-<% @captain.ships.each do |ship| %>
-    <li><a href="ships/#{ship.id}"><%= ship.name %></a></li>
+<% if @captain.ships == nil %>
+    <p>You don't have any ships presently registered.<p>
+<% else %>
+    <% @captain.ships.each do |ship| %>
+        <li><a href="ships/#{ship.id}"><%= ship.name %></a></li>
+    <% end %>
 <% end %>
 </ul>
 <br /><br />
