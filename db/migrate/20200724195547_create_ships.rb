@@ -3,8 +3,7 @@ class CreateShips < ActiveRecord::Migration
     create_table :ships do |t|
       t.string :name
       t.integer :connex_slots
-      t.integer :user_id
-      t.integer :connex_id
+      t.integer :captain_id
     end
   end
 end
