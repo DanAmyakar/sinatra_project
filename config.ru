@@ -7,7 +7,7 @@ end
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 use Rack::MethodOverride
-use ConnexesController
+
 use ShipsController
-use UsersController
+use CaptainsController
 run ApplicationController

@@ -10,21 +10,21 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :index
+    erb :welcome
   end
 
   helpers do 
-    def redirect_if_not_logged_in
+    def redirect_if_not_signed_in
       if !logged_in?
-        redirect "/login?error=You have to log in to do that."
+        redirect "/sign_in?error=You have to sign in to do that."
       end
     end
 
-    def logged_in?
+    def signed_in?
       !!session[:captain_id]
     end
 
-    def current_user
+    def current_captain
       Captain.find(session[:captain_id])
     end
   end

@@ -1,0 +1,12 @@
+<h1>Welcome Captain <%= @captain.name%></h1>
+<br />
+<h3>Your ships...</h3>
+<ul>
+<% @captain.ships.each do |ship| %>
+    <li><a href="ships/#{ship.id}"><%= ship.name %></a></li>
+<% end %>
+</ul>
+<br /><br />
+<p>Register a <a href="ships/new">new ship</a></p>
+<br />
+<p>Are you finished? <a href="/sign_out">Sign Out</a></p>

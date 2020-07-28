@@ -3,63 +3,59 @@
 class CaptainsController < ApplicationController
 
     get '/captains/:id' do
-        if !logged_in?
-            redirect '/index'
-        end
-
+        redirect to "/" if !signed_in?
+        
         @captain = Captain.find(params[:id])
-        if !@captain.nil? && @captain == current_user
-            erb :'captains/show'
+        if !@captain.nil? && @captain == current_captain
+            erb :'captain/show'
         else
-            redirect '/index'
+            redirect to "/"
         end
     end
 
-    get '/signup' do
+    get "/create_acount" do
         if !session[:captain_id]
-            erb :'captains/new'
+            erb :'captains/create_account'
+        else
+            "You are already signed in."
         end
     end
 
-    post '/signup' do
+    post "/create_account" do
         if !params["captain_name"].empty? && !params["password"].empty?
             @captain = Captain.create(
                 captain_name: params[:username], 
                 password: params[:password]
             )
             session[:captain_id] = @captain.id
-            redirect '/index'
+            redirect "/"
         else
-            raise "I'm sorry but those are incomplete values for an account."
+            "I'm sorry but those are incomplete values for an account."
         end
     end
 
-    get '/login' do
+    get '/sign_in' do
         @error_message = params[:error]
         if !session[:captain_id]
-            erb :'captains/login'
+            erb :'captains/sign_in'
         else
-            redirect '/index'
+            redirect '/'
         end
     end
 
-    post '/login' do
+    post '/sign_in' do
         captain = Captain.find_by(captain_name: params[:captain_name])
         if captain && captain.authenticate(params[:pasword])
-            session[:captain_id] = @captain.id
-            redirect '/index'
+            session[:captain_id] = captain.id
+            redirect '/'
         else
-            redirect to '/signup'
+            redirect to '/create_account'
         end
     end
 
-    get '/logout' do
-        if session[:captain_id] != nil
-            session.destroy
-            redirect to '/login'
-        else
-            redirect to '/'
-        end
+    get '/sign_out' do
+        session.destroy if session[:captain_id] != nil
+        redirect to '/'
     end
     
 end
