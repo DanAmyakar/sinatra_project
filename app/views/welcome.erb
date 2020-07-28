@@ -1,14 +1,7 @@
 <h1>Welcome traveler, to my humble port.</h1>
 <br />
-<% if !signed_in? %>
     <h3>Please sign in to view your account.<h3>
     <a href="/captains/sign_in">Sign In</a>
     <br />
     <h3>Or create an account.</h3>
     <a href="/captains/create_account">Create Account</a>
-<% else %>
-    <h3>Would you like to inspect you ship(s)?</h3>
-    <a href="/ships/index">Inspect Ships</a>
-    <br />
-    <a href="/sign_out">Sign Out</a> 
-<% end %>
