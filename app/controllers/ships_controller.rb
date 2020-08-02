@@ -7,7 +7,7 @@ class ShipsController < ApplicationController
     end
 
     # creates a new ship from form info
-    post '/ships' do
+    post 'captains/ships' do
         redirect_if_not_signed_in
         if Ship.valid_params?(params)
             @ship = Ship.create(params)

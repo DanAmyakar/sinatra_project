@@ -10,7 +10,10 @@
     <% end %>
 <% end %>
 </ul>
-<br /><br />
-<p>Register a <a href="ships/new">new ship</a></p>
 <br />
-<p>Are you finished? <a href="/sign_out">Sign Out</a></p>
+<form method="GET" action="/ships/new">
+    <input type="submit" value="Register a new ship">
+</form>
+<form method="GET" action="/sign_out">
+    <input type="submit" value="Sign Out">
+</form>
