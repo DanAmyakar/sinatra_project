@@ -19,7 +19,7 @@ class ShipsController < ApplicationController
     #edit method for a ship
     #edit form contains item lines equal to the cargo slots of a ship
     # submit writes all the item lines to the ships page
-    get '/ships/:id/edit' do
+    get '/captains/ships/:id/edit' do
         @ship_to_edit = Ship.find(params[:id])
         erb :'/ships/edit'
     end
@@ -30,7 +30,7 @@ class ShipsController < ApplicationController
         erb :'ships/show'
     end
 
-    get '/ships/:id' do
+    get '/captains/ships/:id' do
         redirect_if_not_signed_in
         @ship = Ship.find(params["id"])
         erb :'ships/show'
