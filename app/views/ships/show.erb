@@ -11,8 +11,11 @@
 <% end %>
 <br />
 <% if @ship.manifests.count < @ship.cargo_slots.to_i%>
-    <p><a href='/ships/:id/manifest/new'>Add </a> manifest</p>
+    <p><a href='/captains/:id/ships/:id/manifest/new'>Add </a> manifest</p>
 <% else %>
     <p>Your ship is full of cargo.</p>
+<% end %>
+<a href="/captains/:id/ships/:id/edit">Edit this ship</a>
+<br />
 <br />
 <a href="/captains/:id">Profile</a>

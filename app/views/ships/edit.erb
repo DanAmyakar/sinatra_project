@@ -1,1 +1,12 @@
-<h2>Update <%= @ship.name%>
+<h2>Update <%= @ship_to_edit.ship_name%>
+<br />
+<form method="POST" action="/captains/ships/<%= @ship_to_edit.id %>">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <label>Edit the ship name</label><br />
+    <input type="text" name="ship_name" value="<%= @ship_to_edit.ship_name %>"><br />
+    <br />
+    <label>Edit the number of cargo slots</label><br />
+    <input type="text" name="cargo_slots" value="<%= @ship_to_edit.cargo_slots %> "><br />
+    <br />
+    <input type="submit" value="Submit">
+</form>

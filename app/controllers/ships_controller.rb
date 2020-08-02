@@ -1,11 +1,11 @@
 class ShipsController < ApplicationController
 
-    get '/captains/ships/new' do
+    get '/ships/new' do
         redirect_if_not_signed_in
         erb :'ships/new'
     end
 
-    post '/captains/ships' do
+    post '/ships' do
         redirect_if_not_signed_in
         if Ship.valid_params?(params)
             @ship = Ship.create(params)
@@ -19,8 +19,18 @@ class ShipsController < ApplicationController
     #edit method for a ship
     #edit form contains item lines equal to the cargo slots of a ship
     # submit writes all the item lines to the ships page
-     
-    get '/captains/ships/:id' do
+    get '/ships/:id/edit' do
+        @ship_to_edit = Ship.find(params[:id])
+        erb :'/ships/edit'
+    end
+
+    patch '/ships/:id' do
+        Ship.update(params[:id], ship_name: params[:ship_name], cargo_slots: params[:cargo_slots])
+        @ship = Ship.find(params[:id])
+        erb :'ships/show'
+    end
+
+    get '/ships/:id' do
         redirect_if_not_signed_in
         @ship = Ship.find(params["id"])
         erb :'ships/show'
