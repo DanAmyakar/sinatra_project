@@ -1,4 +1,4 @@
-<h2>Update <%= @ship_to_edit.ship_name%>
+<h2>Update <%= @ship_to_edit.ship_name%></h2>
 <br />
 <form method="POST" action="/captains/ships/<%= @ship_to_edit.id %>">
     <input id="hidden" type="hidden" name="_method" value="patch">
