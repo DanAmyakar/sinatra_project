@@ -16,11 +16,16 @@ class ShipsController < ApplicationController
         end
     end
     
+    #edit method for a ship
+    #edit form contains item lines equal to the cargo slots of a ship
+    # submit writes all the item lines to the ships page
+     
     get '/captains/ships/:id' do
         redirect_if_not_signed_in
         @ship = Ship.find(params["id"])
         erb :'ships/show'
     end
     
+    #detroy method for a ship
     
 end

@@ -3,6 +3,16 @@
 <br />
 <% if @ship.manifests.empty? %>
     <p> It looks like you aren't hauling anything aboard this vessel.</p>
+<% else %>
+    <ol>
+    <% @ship.manifests.each do |manifest| %>
+       <li><%= manifest.item_name %>: <%= manifest.item_quantity %>
+    <% end %>  
 <% end %>
+<br />
+<% if @ship.manifests.count < @ship.cargo_slots.to_i%>
+    <p><a href='/ships/:id/manifest/new'>Add </a> manifest</p>
+<% else %>
+    <p>Your ship is full of cargo.</p>
 <br />
 <a href="/captains/:id">Profile</a>
