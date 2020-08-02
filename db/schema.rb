@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200724195547) do
+ActiveRecord::Schema.define(version: 20200802204842) do
 
   create_table "captains", force: :cascade do |t|
     t.string "captain_name"
     t.string "password_digest"
+  end
+
+  create_table "manifests", force: :cascade do |t|
+    t.string  "item_name"
+    t.integer "item_quantity"
+    t.integer "ship_id"
   end
 
   create_table "ships", force: :cascade do |t|

@@ -1,4 +1,8 @@
 <h3><%= @ship.ship_name %></h3>
 <p>Cargo slots: <%= @ship.cargo_slots %></p>
 <br />
+<% if @ship.manifests.empty? %>
+    <p> It looks like you aren't hauling anything aboard this vessel.</p>
+<% end %>
+<br />
 <a href="/captains/:id">Profile</a>
