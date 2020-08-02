@@ -8,6 +8,7 @@ ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 use Rack::MethodOverride
 
+use ManifestsController
 use ShipsController
 use CaptainsController
 run ApplicationController
