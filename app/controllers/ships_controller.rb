@@ -24,7 +24,7 @@ class ShipsController < ApplicationController
         erb :'/ships/edit'
     end
 
-    patch '/ships/:id' do
+    patch '/captains/ships/:id' do
         Ship.update(params[:id], ship_name: params[:ship_name], cargo_slots: params[:cargo_slots])
         @ship = Ship.find(params[:id])
         erb :'ships/show'
