@@ -16,16 +16,22 @@
     -Rewrote user controller to captain controller and updated methods
     
 5) need to remove existing 'views'
+    -Removed views
 
 6) need to write out a welcome page
+    -Wrote out the welcome page
 
 7) welcome page should have captains name if logged in
+    --Not sure if i really want to write that out
 
 8) need to be able to log out
+    -Wrote sign_out method in captain_controller
 
 9) after loggin in should return to home page
+    _After signing out redirected to home page
 
-10) after logging out should return to home page and not display captain name
+10) after logging out should return to home page and not display captain
+    -Welcome page does not display captain name
 
 11) when logged in should have a link for 'view my ships'
 

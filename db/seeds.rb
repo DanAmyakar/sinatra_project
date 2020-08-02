@@ -1,5 +1,8 @@
 # Seed data to populate tables, run 'rake db:seed' to load data.
-user_one = User.create(username: "User One", password: "one_user")
-user_two = User.create(username: "User Two", password: "two_user")
-user_three = User.create(username: "User Three", password: "three_user")
+kyle = Captain.create(captain_name: "Kyle", password: "elyk")
+jack = Captain.create(captain_name: "Jack", password: "kcaj")
 
+kyle.ships.create(ship_name: "The Swift", cargo_slots: "3")
+kyle.ships.create(ship_name: "The Brease", cargo_slots: "4")
+
+jack.ships.create(ship_name: "The Nomad", cargo_slots: "20")

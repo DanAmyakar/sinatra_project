@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20200724195547) do
   end
 
   create_table "ships", force: :cascade do |t|
-    t.string  "name"
+    t.string  "ship_name"
     t.integer "cargo_slots"
     t.integer "captain_id"
   end

@@ -2,11 +2,11 @@
 <br />
 <h3>These are the ships you've registered.</h3>
 <ul>
-<% if @captain.ships == nil %>
+<% if @captain.ships == [] %>
     <p>You don't have any ships presently registered.<p>
 <% else %>
     <% @captain.ships.each do |ship| %>
-        <li><a href="ships/#{ship.id}"><%= ship.name %></a></li>
+        <li><a href='ships/<%="#{ship.id}"%>'><%= ship.ship_name %></a></li>
     <% end %>
 <% end %>
 </ul>
