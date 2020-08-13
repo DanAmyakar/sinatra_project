@@ -2,28 +2,26 @@
 
 class CaptainsController < ApplicationController
 
-    get '/captains/create_account' do
+    get '/create_account' do
         erb :'captains/create_account'
     end
 
     post '/captains' do
         if params[:captain_name] != "" && params[:password] != ""
-            @captain = Captain.create(
-                captain_name: params[:captain_name],
-                password: params[:password]
-            )
-            session[:captain_id] = @captain.id
-            redirect '/captains/:id"'
+            @captain.save if @captain.valid
+            redirect '/captains/#{@captain.id}'
         else
             redirect '/captains/create_account'
         end
     end
 
+    
+
     get '/sign_in' do
         erb :'captains/sign_in'
     end
 
-    post '/sign_in' do
+    post '/sign' do
         captain = Captain.find_by(captain_name: params[:captain_name])
         if captain && captain.authenticate(params[:password])
             session[:captain_id] = captain.id
@@ -39,7 +37,7 @@ class CaptainsController < ApplicationController
             @captain = current_captain
             erb :'/captains/show'
         else
-            redirect to "/sign_in"
+            redirect to '/sign_out'
         end
     end
 
