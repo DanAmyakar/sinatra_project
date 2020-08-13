@@ -7,7 +7,7 @@
 <% else %>
     <% ships = current_captain.ships%>
     <% ships.each do |ship| %>
-        <li><a href='/ship/<%="#{ship.id}"%>'><%= ship.ship_name %></a></li>
+        <li><a href='/ships/<%="#{ship.id}"%>'><%= ship.ship_name %></a></li>
     <% end %>
 <% end %>
 </ul>
