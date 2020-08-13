@@ -7,11 +7,11 @@ class CaptainsController < ApplicationController
     end
 
     post '/captains' do 
-        @captain = Captain.new
-        @captain.save
-        session[:captain_id] = @captain.id    
+        captain = Captain.new(params)
+        captain.save
+        session[:captain_id] = captain.id    
         if session[:captain_id] != nil
-            redirect "/captains/#{@captain.id}"
+            redirect "/captains/#{captain.id}"
         else
             redirect '/create_account'
         end
@@ -33,7 +33,7 @@ class CaptainsController < ApplicationController
 
     get '/captains/:id' do
         if signed_in?
-            @captain = current_captain
+            current_captain
             erb :'/captains/show'
         else
             redirect to '/sign_in'
@@ -41,7 +41,6 @@ class CaptainsController < ApplicationController
     end
 
     delete '/sign_out' do
-        !session[:captain_id].nil?
         session.destroy
         redirect '/'
     end

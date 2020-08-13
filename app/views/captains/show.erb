@@ -1,12 +1,13 @@
-<h1>Welcome Captain <%= @captain.captain_name%></h1>
+<h1>Welcome Captain <%= current_captain.captain_name %></h1>
 <br />
 <h3>These are the ships you've registered.</h3>
 <ul>
-<% if @captain.ships == [] %>
+<% if current_captain.ships == [] %>
     <p>You don't have any ships presently registered.<p>
 <% else %>
-    <% @captain.ships.each do |ship| %>
-        <li><a href='ships/<%="#{ship.id}"%>'><%= ship.ship_name %></a></li>
+    <% ships = current_captain.ships%>
+    <% ships.each do |ship| %>
+        <li><a href='/ship/<%="#{ship.id}"%>'><%= ship.ship_name %></a></li>
     <% end %>
 <% end %>
 </ul>
@@ -14,6 +15,7 @@
 <form method="GET" action="/ships/new">
     <input type="submit" value="Register a new ship">
 </form>
-<form method="GET" action="/sign_out">
+<form method="POST" action="/sign_out">
+    <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" value="Sign Out">
 </form>

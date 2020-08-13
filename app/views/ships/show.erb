@@ -11,14 +11,14 @@
 <% end %>
 <br />
 <% if @ship.manifests.count < @ship.cargo_slots.to_i%>
-    <p><a href='/captains/ships/manifests/new'>Add </a> manifest</p>
+    <p><a href='/manifests/new'>Add </a> manifest</p>
 <% else %>
     <p>Your ship is full of cargo.</p>
 <% end %>
-<form method="GET" action="/captains/ships/<%= @ship.id %>/edit">
+<form method="GET" action="/ships/<%= @ship.id %>/edit">
     <input type="submit" value="Edit this Ship">
 </form>
-<form method="POST" action="/captains/ships/<%= @ship.id %>">
+<form method="POST" action="/ships/<%= @ship.id %>">
     <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete this Ship">
 </form>

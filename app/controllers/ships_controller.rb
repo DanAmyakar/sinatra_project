@@ -3,15 +3,15 @@ class ShipsController < ApplicationController
     # gets to new ship form
     get '/ships/new' do
         redirect_if_not_signed_in
+        set_ships
         erb :'ships/new'
     end
 
     # creates a new ship from form info
-    post '/captains/ships' do
+    post '/ships' do
         redirect_if_not_signed_in
         if Ship.valid_params?(params)
-            @ship = Ship.create(params)
-            current_captain.ships << @ship
+            set_ship
             erb :'ships/show'
         else
             redirect 'ships/new'
@@ -19,14 +19,14 @@ class ShipsController < ApplicationController
     end
     
     # gets the form to write new info to a ship
-    get '/captains/ships/:id/edit' do
+    get '/ships/:id/edit' do
         redirect_if_not_signed_in
         @ship_to_edit = Ship.find(params[:id])
         erb :'/ships/edit'
     end
 
     # writes new info for a ship
-    patch '/captains/ships/:id' do
+    patch '/ships/:id' do
         redirect_if_not_signed_in
         Ship.update(params[:id], ship_name: params[:ship_name], cargo_slots: params[:cargo_slots])
         @ship = Ship.find(params[:id])
@@ -34,16 +34,27 @@ class ShipsController < ApplicationController
     end
 
     # gets a ships info page
-    get '/captains/ships/:id' do
+    get '/ships/:id' do
         redirect_if_not_signed_in
-        @ship = Ship.find(params["id"])
+        set_ship
         erb :'ships/show'
     end
     
     #detroy method for a ship
-    delete '/captains/ships/:id' do
+    delete '/ships/:id' do
         redirect_if_not_signed_in
-        Ship.delete(params[:id])
-        redirect '/captains/ships'
+        set_ship.destroy
+        redirect '/ships'
     end
+
+    private
+
+        def set_ship
+            @ship = current_captain.ships.find_by_id(params)
+        end
+
+        def set_ships
+            @ships = current_captain.ships
+        end
+
 end
