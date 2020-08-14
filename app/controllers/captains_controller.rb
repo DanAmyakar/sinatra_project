@@ -11,7 +11,7 @@ class CaptainsController < ApplicationController
         captain.save
         session[:captain_id] = captain.id    
         if session[:captain_id] != nil
-            redirect "/captains/#{captain.id}"
+            redirect "/captains/#{@captain.id}"
         else
             redirect '/create_account'
         end
@@ -33,7 +33,7 @@ class CaptainsController < ApplicationController
 
     get '/captains/:id' do
         if signed_in?
-            current_captain
+            @captain = current_captain
             erb :'/captains/show'
         else
             redirect to '/sign_in'

@@ -11,7 +11,7 @@
 <% end %>
 <br />
 <% if @ship.manifests.count < @ship.cargo_slots.to_i%>
-    <p><a href='/manifests/new'>Add </a> manifest</p>
+    <p><a href='/manifests/new'>Add</a> manifest</p>
 <% else %>
     <p>Your ship is full of cargo.</p>
 <% end %>
@@ -22,7 +22,7 @@
     <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete this Ship">
 </form>
-<form method="GET" action="/captains/:id">
+<form method="GET" action="/captains/<%= "#{current_captain.id}" %>"> 
     <input type="submit" value="Back to Profile">
 </form>
 
