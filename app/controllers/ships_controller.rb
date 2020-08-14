@@ -9,10 +9,10 @@ class ShipsController < ApplicationController
     # creates a new ship from form info
     post '/ships' do
         redirect_if_not_signed_in
-        @ship = current_captain.ships.new
+        @ship = current_captain.ships.new(params)
         @ship.save
-        if 
-            erb :'ships/show'
+        if @ship.id != nil
+            redirect "/ships/#{@ship.id}"
         else
             redirect 'ships/new'
         end
@@ -43,8 +43,9 @@ class ShipsController < ApplicationController
     #detroy method for a ship
     delete '/ships/:id' do
         redirect_if_not_signed_in
-        current_captain.ships.find_by_id(params).destroy
-        redirect '/ships'
+        @ship = current_captain.ships.find_by_id(params[:id])
+        @ship.destroy
+        redirect "/captains/#{current_captain.id}"
     end
 
 end
