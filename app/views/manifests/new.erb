@@ -1,6 +1,6 @@
-<h2>Add an item to the <%= @current_ship.ship_name %> cargo</h2>
+<h2>Add an item to the <%= @ship.ship_name %> cargo</h2>
 <br />
-<form method="POST" action="/captains/ships/:id">
+<form method="POST" name="ship_id" action="/ships/<%= @ship.id %>">
     <label>The name of your cargo, captain?</label><br />
     <input type="text" name="item_name"><br />
     <br />

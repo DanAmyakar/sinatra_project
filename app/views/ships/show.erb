@@ -7,12 +7,13 @@
     <ol>
     <% @ship.manifests.each do |manifest| %>
        <li><%= manifest.item_name %>: <%= manifest.item_quantity %>
-    <% end %>  
+    <% end %> 
+    </ol> 
 <% end %>
 <br />
 <% if @ship.manifests.count < @ship.cargo_slots.to_i%>
     <form method="GET" action="/manifests/new">
-        <input type="hidden" name="current_ship" value="params[<%= @ship.id %>]">
+        <input type="hidden" name="ship_id" value="<%= @ship.id %>">
         <input type="submit" value="Add manifest">
     </form>
 <% else %>
