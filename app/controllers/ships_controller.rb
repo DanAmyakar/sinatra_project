@@ -28,7 +28,7 @@ class ShipsController < ApplicationController
     # writes new info for a ship
     patch '/ships/:id' do
         redirect_if_not_signed_in
-        Ship.update(ship_name: params[:ship_name], cargo_slots: params[:cargo_slots])
+        Ship.update(params[:id], ship_name: params[:ship_name], cargo_slots: params[:cargo_slots])
         @ship = current_captain.ships.find_by_id(params[:id])
         erb :'ships/show'
     end
@@ -46,6 +46,12 @@ class ShipsController < ApplicationController
         @ship = current_captain.ships.find_by_id(params[:id])
         @ship.destroy
         redirect "/captains/#{current_captain.id}"
+    end
+
+    private
+
+    def set_ship
+        @ship = current_captain.ships.find_by_id(params[:id])
     end
 
 end
