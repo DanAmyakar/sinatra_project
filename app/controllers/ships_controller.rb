@@ -26,6 +26,7 @@ class ShipsController < ApplicationController
             erb :'/ships/edit'
         else
             redirect "/captains/#{current_captain.id}"
+        end
     end
 
     # writes new info for a ship
