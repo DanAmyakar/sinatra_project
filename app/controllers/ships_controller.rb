@@ -22,36 +22,39 @@ class ShipsController < ApplicationController
     get '/ships/:id/edit' do
         redirect_if_not_signed_in
         @ship_to_edit = current_captain.ships.find_by_id(params[:id])
-        erb :'/ships/edit'
+        if @ship_to_edit
+            erb :'/ships/edit'
+        else
+            redirect "/captains/#{current_captain.id}"
     end
 
     # writes new info for a ship
     patch '/ships/:id' do
         redirect_if_not_signed_in
-        Ship.update(params[:id], ship_name: params[:ship_name], cargo_slots: params[:cargo_slots])
         @ship = current_captain.ships.find_by_id(params[:id])
-        erb :'ships/show'
+        @ship.update(ship_name: params[:ship_name], cargo_slots: params[:cargo_slots])
+        redirect "/ship/#{@ship.id}"
     end
 
     # gets a ships info page
     get '/ships/:id' do
         redirect_if_not_signed_in
         @ship = current_captain.ships.find_by_id(params[:id])
-        erb :'ships/show'
+        if @ship
+            erb :'ships/show'
+        else
+            redirect "/captains/#{current_captain.id}"
+        end
     end
     
     #detroy method for a ship
     delete '/ships/:id' do
         redirect_if_not_signed_in
         @ship = current_captain.ships.find_by_id(params[:id])
-        @ship.destroy
+        if @ship
+            @ship.destroy
+        end
         redirect "/captains/#{current_captain.id}"
-    end
-
-    private
-
-    def set_ship
-        @ship = current_captain.ships.find_by_id(params[:id])
     end
 
 end
