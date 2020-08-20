@@ -8,12 +8,10 @@ class CaptainsController < ApplicationController
 
     post '/captains' do 
         captain = Captain.new(params)
-        captain.save
-        session[:captain_id] = captain.id    
-        if session[:captain_id] != nil
+        if captain.save
             redirect "/captains/#{captain.id}"
         else
-            redirect '/create_account'
+            redirect "/create_account"
         end
     end
 
