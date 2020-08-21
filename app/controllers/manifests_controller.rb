@@ -31,4 +31,6 @@ class ManifestsController < ApplicationController
     patch "/ships/:id" do
     end
 
+    #delete selected manifest 
+
 end
